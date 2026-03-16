@@ -64,6 +64,9 @@ Estas relaciones se implementan mediante **claves foráneas**, garantizando la i
 ---
 
 📌 **Proyecto académico – Sistema de Ventas y Facturación**
+
 3. Crear la base de datos `sistema_ventas`.
+
 4. Crear las tablas en el orden definido en el script para respetar las dependencias.
+
 5. Verificar la correcta creación de las relaciones entre tablas.
