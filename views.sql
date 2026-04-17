@@ -57,3 +57,30 @@ FROM producto
 WHERE stock < 12;
 
 SELECT * FROM vista_stock_baj;
+
+
+--CREACIÓN DE LA VISTA GANANCIA POR CATEGORÍA
+CREATE VIEW vista_ganancia_categoria AS
+SELECT 
+    p.id_categoria,
+    c.nombre_categoria,
+    SUM((p.precio_venta - p.precio_compra) * p.stock) AS ganancia_total
+FROM producto p
+INNER JOIN categoria c 
+    ON p.id_categoria = c.id_categoria
+GROUP BY 
+    p.id_categoria, 
+    c.nombre_categoria;
+
+--CREACIÓN DE LA VISTA PRODUCTOS MÁS VENDIDOS
+CREATE VIEW vista_productos_mas_vendidos AS
+SELECT 
+    p.id_producto,
+    p.nombre_producto,
+    COALESCE(SUM(dv.venta_detalle_cantidad), 0) AS total_vendido
+FROM producto p
+LEFT JOIN detalle_venta dv 
+    ON p.id_producto = dv.id_producto
+GROUP BY 
+    p.id_producto, 
+    p.nombre_producto;
